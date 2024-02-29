@@ -3,7 +3,7 @@
 int main()
 {
     char a[] = "AABBBCCCCddd";
-    int len_a = sizeof(a) / sizeof(a[0]);
+    int len_a = sizeof(a) / sizeof(a[0])-1;
     // printf("%d\n\n", len_a);
     char E = a[0];
 
