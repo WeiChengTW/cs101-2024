@@ -44,7 +44,7 @@ void Find_Water(lotto_t *my_lotto)
     }
     // printf("ans = %d", ans_index);
 
-    my_lotto->recript_id = sum + 1;
+    my_lotto->recript_id = sum;
     // sprintf(water, "NO.%05d", water_id);
 }
 
@@ -88,7 +88,7 @@ void record_writefile(lotto_t my_lotto, int num)
     {
         // printf("New\n");
         fp = fopen("record.bin", "w");
-        my_lotto.recript_id = 1;
+        my_lotto.recript_id = 0;
         sprintf(water, "NO.%05d", my_lotto.recript_id);
         // printf("ANO.%05d\n", water_id);
     }
@@ -99,7 +99,7 @@ void record_writefile(lotto_t my_lotto, int num)
         Find_Water(&my_lotto);
         fp = fopen("record.bin", "a");
     }
-    sprintf(water, "NO.%05d", my_lotto.recript_id);
+    sprintf(water, "NO.%05d", my_lotto.recript_id + 1);
     fprintf(fp, "%s\n", water);
 
     // fprintf(fp, "= ");
@@ -147,6 +147,8 @@ void lotto_writefile(lotto_t my_lotto, int num)
     char filename[17];
     // lotto[00001].txt
     // lotto[%05d].txt,i
+    Find_Water(&my_lotto);
+    // printf("id = %d", my_lotto.recript_id);
     sprintf(filename, "lotto[%05d].txt", my_lotto.recript_id);
     fp = fopen(filename, "w");
     fprintf(fp, "========= lotto649 =========\n");
@@ -211,7 +213,7 @@ void Main_lotto(int num)
     int random_num = 0;
     for (int i = 0; i < num; i++)
     {
-        my_lotto.recript_id = i + 1;
+        // my_lotto.recript_id = i + 1;
         for (int j = 0; j < 7; j++)
         {
 
@@ -307,7 +309,7 @@ int main()
         // water_id++;
     }
 
-    printf("\n請輸入中獎號碼(最多三個):");
+    printf("請輸入中獎號碼(最多三個):");
     int winnum[3] = {0};
 
     int counter = 0;
@@ -317,7 +319,7 @@ int main()
         counter++;
     } while (getchar() != '\n');
 
-    printf("\n輸入的中獎號碼:");
+    printf("輸入的中獎號碼:");
     // printf("\n輸入的中獎號碼:01 02 07");
     for (int i = 0; i < 3; i++)
     {
@@ -346,9 +348,10 @@ int main()
     lotto_t lotto;
     Find_Water(&lotto);
     // printf("%d", lotto.recript_id);
-    while (line < (lotto.recript_id - 1) * 8)
+    while (line < (lotto.recript_id) * 8)
     {
         // printf("i = %d\n", i);
+        // printf("line = %d\n", line);
         if (line % 8 == 0)
         {
             NO = 0;
@@ -378,7 +381,7 @@ int main()
             char a = buffer[i];
             ans_time[j] = a;
             line++;
-            // printf("Bline = %d\n", line); 
+            // printf("Bline = %d\n", line);
         }
         else if (line % 8 == 2)
         {
