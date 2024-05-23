@@ -33,7 +33,8 @@ public:
         ifstream in;
         string line;
         int count = 0, count_len = 0;
-        string *ans;
+        string *ans = new string[1000];
+
         in.open("main.cpp");
         if (in.fail())
         {
@@ -45,11 +46,17 @@ public:
 
             if (line[0] == 'c' && line[1] == 'l')
             {
+
+                // cout << line << endl;
+                ans[count] = line;
                 count++;
-                cout << line << endl;
             }
         }
         cout << count << " class in main.cpp" << endl;
+        for (int i = 0; i < count; i++)
+        {
+            cout << ans[i] << endl;
+        }
         in.close();
     }
 };
