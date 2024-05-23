@@ -33,7 +33,7 @@ public:
         ifstream in;
         string line;
         int count = 0, count_len = 0;
-        string *ans = new string[1000];
+        string *ans[1000];
 
         in.open("main.cpp");
         if (in.fail())
